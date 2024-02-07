@@ -1,0 +1,101 @@
+<div class="container-fluid" style="background-color: #02534d; padding: 20px;">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="text-container">
+                <h1 class="display-lg-1" style="color: white;">Pływający dom na wodzie</h1>
+                <p class="display-lg-1" style="color: white;">z sauną, kominkiem i prywatnym pomostem</p>
+                <div class="row" style="margin-top: 10%;">
+                    <div class="col">
+                        <p class="display-lg-1" style="color: white;"><i class="bi bi-people"></i> dla 4 osób</p>
+                        <p class="display-lg-1" style="color: white;"><i class="bi bi-arrows-fullscreen"></i> 50 m2</p>
+                        <p class="display-lg-1" style="color: white;"><i class="bi bi-house"></i> 2 sypialnie</p>
+                    </div>
+                    <div class="col">
+                        <p class="display-lg-1" style="color: white;"><i class="bi bi-bed"></i> 2 x łóżko dwuosobowe</p>
+                        <p class="display-lg-1" style="color: white;"><i class="bi bi-sofa"></i> 1 x sofa</p>
+                        <p class="display-lg-1" style="color: white;"><i class="bi bi-cash-coin"></i> Cena: od 750 zł/dobę</p>
+                    </div>
+                </div>
+                <button class="btn btn-warning" (click)="toggleReservationForm()" style="margin-bottom: 3%;">Zarezerwuj online</button>
+            </div>
+        </div>
+        <div class="col-md-6 position-relative">
+            <div class="image-container" style="height: 100%; overflow-x: auto;">
+                <div class="d-flex">
+                    <div class="arrow-icon position-absolute top-50 start-0 translate-middle-y" style="left: 0; cursor: pointer;" onclick="prevImage()">
+                        
+                    </div>
+                    <img src="../../assets/sypialnia.jpg" alt="sypialnia" class="img-fluid mr-2">
+                    <img src="../../assets/salon.jpg" alt="salon" class="img-fluid mr-2">
+                    <img src="../../assets/lazienka.jpg" alt="lazienka" class="img-fluid mr-2">
+                    <img src="../../assets/pomost.jpg" alt="pomost" class="img-fluid mr-2">
+                    <div class="arrow-icon position-absolute top-50 end-0 translate-middle-y" style="right: 0; cursor: pointer;" onclick="nextImage()">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let currentImageIndex = 0;
+    const images = document.querySelectorAll('.image-container img');
+
+    function nextImage() {
+        currentImageIndex = (currentImageIndex + 1) % images.length;
+        images[currentImageIndex].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function prevImage() {
+        currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+        images[currentImageIndex].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+</script>
+
+
+
+
+
+
+<div *ngIf="reservationMessage" class="alert-overlay">
+  <div class="alert alert-success" role="alert">
+    {{ reservationMessage }}
+  </div>
+</div>
+
+  
+  <div *ngIf="showReservationForm" class="reservation-overlay">
+    <div class="reservation-form">
+      <button type="button" class="bg-transparent border-0" aria-label="Close" (click)="toggleReservationForm()">
+        <i class="bi bi-x"></i>
+      </button>
+      <form>
+        <div class="form-group">
+          <label for="adults">Liczba osób dorosłych:</label>
+          <input type="number" class="form-control" id="adults" name="adults" [(ngModel)]="adults">
+        </div>
+        <div class="form-group">
+          <label for="children">Liczba dzieci:</label>
+          <input type="number" class="form-control" id="children" name="children" [(ngModel)]="children">
+        </div>
+        <div class="form-group">
+          <label for="start-date">Data rozpoczęcia pobytu:</label>
+          <input type="date" class="form-control" id="start-date" name="start-date" [(ngModel)]="startDate">
+        </div>
+        <div class="form-group">
+          <label for="end-date">Data zakończenia pobytu:</label>
+          <input type="date" class="form-control" id="end-date" name="end-date" [(ngModel)]="endDate">
+        </div>
+        <div class="form-group">
+          <label for="email">Adres e-mail:</label>
+          <input type="email" class="form-control" id="email" name="email" [(ngModel)]="email">
+        </div>
+        <button type="submit" class="btn" style="background-color: #02534d; color: white; margin-top: 2%;" (click)="reserveStay()">Zarezerwuj</button>
+
+      
+      </form>
+      
+    </div>
+  </div>
+  

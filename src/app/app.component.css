@@ -1,0 +1,13 @@
+.bg {
+    background-image: url('../assets/tlo2.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh; /* Ustawia wysokość tła na całą wysokość ekranu */
+    
+    justify-content: center;
+   
+    color: white; /* Ustawia kolor tekstu na biały */
+    text-align: center;
+    font-size: 3rem; /* Ustawia rozmiar czcionki na 3rem */
+  }
+  
